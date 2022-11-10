@@ -1,10 +1,8 @@
 import "./chart.scss";
-import React, { PureComponent } from "react";
 import {
   AreaChart,
   Area,
   XAxis,
-  YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
@@ -12,18 +10,18 @@ import {
 
 const data = [
   { name: "January", total: 1200 },
-  { name: "February", total: 1900 },
-  { name: "March", total: 2100 },
-  { name: "April", total: 800 },
-  { name: "May", total: 1600 },
-  { name: "June", total: 1700 },
+  { name: "February", total: 2100 },
+  { name: "March", total: 800 },
+  { name: "April", total: 1600 },
+  { name: "May", total: 1200 },
+  { name: "June", total: 1900 },
 ];
 
-const Charts = () => {
+const Charts = ({aspect, title}) => {
   return (
     <div className="chart">
-      <div className="title">Last 6 Months (Revenue)</div>
-      {/* <ResponsiveContainer width="100%">
+      <div className="title">{title}</div>
+      <ResponsiveContainer width="100%" aspect={aspect}>
         <AreaChart
           width={500}
           height={400}
@@ -35,9 +33,8 @@ const Charts = () => {
             bottom: 0,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
+          <XAxis dataKey="name" stroke="gray" />
           <Tooltip />
           <Area
             type="monotone"
@@ -61,7 +58,7 @@ const Charts = () => {
             fill="#ffc658"
           />
         </AreaChart>
-      </ResponsiveContainer> */}
+      </ResponsiveContainer>
     </div>
   );
 };
