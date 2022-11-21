@@ -5,10 +5,14 @@ import New from "./pages/new/New";
 import Single from "./pages/single/Single";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { userInputs, productInputs } from "./components/formSource";
+import "./style/dark.scss";
+import { useSelector } from "react-redux";
 
 function App() {
+  const theme = useSelector(state => state.theme.value)
+
   return (
-    <div className="App">
+    <div className={theme ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
           <Route path="/">

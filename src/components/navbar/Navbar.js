@@ -6,8 +6,14 @@ import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ListIcon from "@mui/icons-material/List";
+import { useDispatch, useSelector } from "react-redux";
+import { changeTheme } from "../../style/themeReducer";
+import LightModeIcon from '@mui/icons-material/LightMode';
+
 
 const Navbar = () => {
+  const theme = useSelector(state => state.theme.value)
+  const dispatch = useDispatch();
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -20,8 +26,8 @@ const Navbar = () => {
             <LanguageIcon className="icon" />
             English
           </div>
-          <div className="item">
-            <DarkModeIcon />
+          <div className="item" onClick={() => dispatch(changeTheme())}>
+           {theme ? <DarkModeIcon /> : <LightModeIcon />}
           </div>
           <div className="item">
             <FullscreenExitIcon className="icon" />

@@ -11,10 +11,16 @@ import PsychologyIcon from "@mui/icons-material/Psychology";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { changeTheme } from "../../style/themeReducer";
 
 
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const theme = useSelector(state => state.theme.value)
+  
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -26,10 +32,12 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
+          <Link to="/" style={{textDecoration: "none"}}>
           <li>
             <DashboardIcon className="icon" />
             <span>Dashboard</span>
           </li>
+          </Link>
           <p className="title">LISTS</p>
           <Link to="/users" style={{textDecoration: "none"}}>   
             <li>
@@ -71,10 +79,12 @@ const Sidebar = () => {
             <span>Logs</span>
           </li>
           <p className="title">USER</p>
+          <Link to="/users/new" style={{textDecoration: "none"}}>
           <li>
             <PortraitIcon className="icon" />
             <span>Profile</span>
           </li>
+          </Link>
           <li>
             <LogoutIcon className="icon" />
             <span>Logout</span>
@@ -82,8 +92,10 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="bottom">
-        <div className="colorOption"></div>
-        <div className="colorOption"></div>
+        
+        <div onClick={theme ? () => dispatch(changeTheme()) : null} className="colorOption"></div>
+
+        <div  onClick={theme ? null : () => dispatch(changeTheme())} className="colorOption"></div>
       </div>
     </div>
   );
